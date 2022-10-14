@@ -8,7 +8,7 @@ LogRouter  = APIRouter()
 
 @LogRouter.post("/log/nuevo", description="registro log")
 def logNuevo(data: dict):
-    arRegistro = db.connecion.cromo.log.insert_one(data).inserted_id
+    arRegistro = db.connecion.cromo.genLog.insert_one(data).inserted_id
     return {
         "Mensaje": "se agrego un registro nuevo",
         "id": str(arRegistro)
@@ -16,10 +16,10 @@ def logNuevo(data: dict):
 
 @LogRouter.get("/log/movimiento")
 async def logMovimiento():
-    arrRegistros = db.connecion.cromo.log.find()
+    arrRegistros = db.connecion.cromo.genLog.find({})
     arrResultado = []
     for item in arrRegistros:
-        arrResultado.append(item['data'])
+        arrResultado.append(item)
 
     return arrResultado
 
