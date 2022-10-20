@@ -7,11 +7,10 @@ LogRouter = APIRouter()
 
 
 @LogRouter.post("/log/nuevo", description="registro log")
-def logNuevo(data: dict):
-    arRegistro = db.mydb.insert_one(data).inserted_id
+def logNuevo(data: list):
+    arRegistro = db.mydb.insert_many(data)
     return {
-        "Mensaje": "se agrego un registro nuevo",
-        "id": str(arRegistro)
+        "Mensaje": "se agrego un registro nuevo"
     }
 
 @LogRouter.get("/log/movimiento/{nombreEnditad}/{codigoRegistroPk}")
