@@ -13,9 +13,9 @@ def logNuevo(data: list):
         "Mensaje": "se agrego un registro nuevo"
     }
 
-@LogRouter.get("/log/movimiento/{nombreEnditad}/{codigoRegistroPk}")
-async def logMovimiento(nombreEnditad: str, codigoRegistroPk: str):
-    arrRegistros = db.mydb.find({"nombreEntidad": nombreEnditad, "codigoRegistroPk": codigoRegistroPk})
+@LogRouter.post("/log/movimiento")
+async def logMovimiento(data: dict):
+    arrRegistros = db.mydb.find({"nombreEntidad": data['nombreEnditad'], "codigoRegistroPk": data['codigoRegistroPk']})
     arrResultado = []
     for item in arrRegistros:
         item['_id'] = str(item['_id'])
