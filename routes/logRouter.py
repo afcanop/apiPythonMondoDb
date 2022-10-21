@@ -15,7 +15,7 @@ def logNuevo(data: list):
 
 @LogRouter.post("/log/movimiento")
 async def logMovimiento(data: dict):
-    arrRegistros = db.mydb.find({"nombreEntidad": data['nombreEnditad'], "codigoRegistroPk": data['codigoRegistroPk']})
+    arrRegistros = db.mydb.find({"nombreEntidad": data['nombreEntidad'], "codigoRegistroPk": data['codigoRegistroPk']})
     arrResultado = []
     for item in arrRegistros:
         item['_id'] = str(item['_id'])
